@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    
+</div>
+
+<br/>
+
+<div style="width: 100%;">
+    <div style="width: 75%; margin-left: auto; margin-right: auto;">
+        <form id="form" style="text-align: center;" asp-controller="Home" asp-action="ShortenUrl" method="post">
+            <input type="text" placeholder="Input Url"/>
+
+            <button type="submit">
+                Submit
+            </button>
+        </form>
+    </div>
+</div>
+
