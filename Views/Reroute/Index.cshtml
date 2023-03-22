@@ -1,0 +1,38 @@
+﻿@model List<UrlModel>;
+@{
+    ViewData["Title"] = "Url Hits Page";
+}
+
+<div class="text-left">
+    <h1 class="display-4">Url Hits</h1>
+
+</div>
+
+<br />
+
+<div style="width: 100%;">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Original Url</th>
+                <th>Shortened Url</th>
+                <th>No. of Hits</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var urls in Model)
+            {
+            <tr>
+                <td><a href="@urls.OriginalUrl">@urls.OriginalUrl</a></td>
+                <td><a href="@urls.ShortenedUrl">@urls.ShortenedUrl</a></td>
+                <td>@urls.Hits</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+
+    <br />
+</div>
+
+@section scripts
+{}

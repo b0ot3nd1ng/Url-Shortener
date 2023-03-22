@@ -7,6 +7,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Url_Shortener.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Url_Shortener
 {
@@ -23,6 +25,8 @@ namespace Url_Shortener
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddDbContext<UrlModelContext>(options =>
+            options.UseSqlite("Data Source=UrlDB.sqlite"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,6 +51,11 @@ namespace Url_Shortener
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapControllerRoute(
+                    "Reroute",
+                    "/{code}",
+                    new { controller = "Reroute", action = "Reroute" });
             });
         }
     }

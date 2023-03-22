@@ -4,20 +4,60 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    
+
 </div>
 
-<br/>
+<br />
 
 <div style="width: 100%;">
     <div style="width: 75%; margin-left: auto; margin-right: auto;">
-        <form id="form" style="text-align: center;" asp-controller="Home" asp-action="ShortenUrl" method="post">
-            <input type="text" placeholder="Input Url"/>
+        <form id="form" style="text-align: center;" method="post">
+            <input type="url" placeholder="Input Url" name="url" id="url" />
 
             <button type="submit">
                 Submit
             </button>
         </form>
     </div>
+
+    <br />
+
+    <div style="width: 75%; margin-left: auto; margin-right: auto;">
+        <div style="width: 75%; margin-left: auto; margin-right: auto; text-align: center; display: none;" id="divResult">
+            Shortened url: <a href="#" id="lnkResult"></a>
+
+        </div>
+        <div style="width: 75%; margin-left: auto; margin-right: auto; text-align: center; display: none; color: red;" id="divErr">
+            ERROR
+
+        </div>
+    </div>
+
 </div>
 
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#form").submit(function (event) {
+                var formData = {
+                    url: $("#url").val()
+                };
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Home/Create",
+                    data: formData,
+                    dataType: "json",
+                    encode: true,
+                }).done(function (data) {
+                    $("#lnkResult").text(data);
+                    $("#lnkResult").attr("href", data);
+                    $("#divResult").show();
+                });
+
+                event.preventDefault();
+            });
+        });
+    </script>
+}
