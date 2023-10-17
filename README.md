@@ -1,5 +1,5 @@
 # Url-Shortener 
-(by James Joyce Alano - for DBOS assessment)
+(by James Joyce Alano)
 
 Technologies used:
 
